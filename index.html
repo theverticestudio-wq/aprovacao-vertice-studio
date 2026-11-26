@@ -1,0 +1,445 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><title>Aprovação Vértice Studio</title><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&family=EB+Garamond:ital,wght@1,500&display=swap">
+<style>
+/* Layout: faixa bordô de abertura → instruções → prévia do feed → um cartão por post, na ordem de postagem.
+   Visual único e deliberado (papel creme + bordô da marca), sem modo escuro. */
+:root{
+  --papel:#F3F0F7; --papel2:#E9E4F2; --bordo:#0B0B14; --vinho:#1A1240; --rosa:#7B8CFF; --rosa2:#B9A6FF;
+  --magenta:#7B2FF7; --tinta:#0E0E14; --tinta2:#55556A; --linha:#DCD6E8;
+  --ok:#2F6B4F; --ok-bg:#DDEBDD; --alt:#9A5A00; --alt-bg:#F6E3C2; --pend:#7A6A6C; --pend-bg:#EDE3D6;
+  --display:'Inter',system-ui,sans-serif; --script:'EB Garamond',Georgia,serif; --corpo:'Inter',system-ui,sans-serif; --italico:'EB Garamond',Georgia,serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--papel);color:var(--tinta);font:500 16px/1.55 var(--corpo);margin:0}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;margin:0}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--magenta);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* abertura */
+.topo{background:var(--bordo);color:var(--papel);background-image:linear-gradient(120deg,rgba(61,91,255,.35),rgba(123,47,247,.25) 50%,rgba(209,43,242,.35));background-size:34px 34px}
+.topo .wrap{padding-block:40px 34px;display:grid;gap:22px}
+.marca{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font:700 12px/1 var(--corpo);letter-spacing:.22em;text-transform:uppercase;opacity:.8}
+.titulo-topo .s{font:400 clamp(48px,9vw,84px)/.9 var(--script);color:var(--rosa2)}
+.titulo-topo h1{font:400 clamp(40px,8vw,76px)/.95 var(--display);text-transform:uppercase;letter-spacing:.01em}
+.titulo-topo p{margin:10px 0 0;opacity:.85}
+.placar{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.placar div{background:rgba(247,238,220,.08);border:1px solid rgba(247,238,220,.18);padding:12px 14px}
+.placar b{display:block;font:400 34px/1 var(--display);font-variant-numeric:tabular-nums}
+.placar span{font-size:13px;opacity:.85}
+.barra{height:8px;background:rgba(247,238,220,.18);overflow:hidden}
+.barra i{display:block;height:100%;width:0;background:var(--rosa2);transition:width .5s}
+
+/* blocos */
+section.bloco{padding-block:34px 8px}
+.rotulo{font:700 12px/1 var(--corpo);letter-spacing:.2em;text-transform:uppercase;color:var(--magenta);margin-bottom:12px}
+.instr{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:start}
+.instr ol{margin:0;padding-left:22px;display:grid;gap:8px}
+.instr ol li::marker{font-family:var(--display);color:var(--magenta)}
+.quem{background:#fff8ec;border:1px solid var(--linha);padding:18px}
+.quem h2{font:400 30px/1 var(--display);text-transform:uppercase;margin-bottom:6px}
+.quem p{margin:0 0 12px;color:var(--tinta2);font-size:14px}
+.pessoas{display:flex;gap:8px;flex-wrap:wrap}
+.pessoa{border:2px solid var(--vinho);background:transparent;color:var(--vinho);padding:9px 18px;border-radius:999px;font-weight:700}
+.pessoa[aria-pressed="true"]{background:var(--vinho);color:var(--papel)}
+.aviso{margin-top:12px;font-size:13px;color:var(--alt);background:var(--alt-bg);padding:10px 12px}
+.ao-vivo{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--tinta2);margin-top:10px}
+.ao-vivo i{width:8px;height:8px;border-radius:50%;background:var(--pend)}
+.ao-vivo.on i{background:#2F9E5B;box-shadow:0 0 0 4px rgba(47,158,91,.18)}
+
+/* prévia do feed */
+.feed-box{display:grid;grid-template-columns:minmax(0,360px) 1fr;gap:28px;align-items:start}
+.feed{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;background:#000;max-width:360px}
+.feed a{position:relative;display:block;aspect-ratio:4/5}
+.feed img{width:100%;height:100%;object-fit:cover;display:block}
+.feed .pt{position:absolute;left:5px;top:5px;font:700 11px/1 var(--corpo);background:rgba(20,5,8,.75);color:#fff;padding:3px 6px;border-radius:8px}
+.feed .st{position:absolute;right:5px;bottom:5px;width:14px;height:14px;border-radius:50%;border:2px solid #fff;background:var(--pend)}
+.st.ok{background:#2F9E5B}.st.alt{background:#E08A00}
+.filtros{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.filtro{border:1px solid var(--linha);background:#fff8ec;color:var(--tinta);padding:8px 14px;border-radius:999px;font-size:14px;font-weight:600}
+.filtro[aria-pressed="true"]{background:var(--tinta);color:var(--papel);border-color:var(--tinta)}
+.legenda-cores{font-size:13px;color:var(--tinta2);display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}
+.legenda-cores span{display:inline-flex;align-items:center;gap:6px}
+.legenda-cores i{width:10px;height:10px;border-radius:50%;display:inline-block}
+
+/* posts */
+.lista{display:grid;gap:26px;padding-block:20px 60px}
+.post{background:#fffaf0;border:1px solid var(--linha);display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);scroll-margin-top:16px}
+.midia{position:relative;background:var(--papel2);min-width:0}
+.trilho{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.trilho::-webkit-scrollbar{display:none}
+.trilho img{flex:0 0 100%;width:100%;aspect-ratio:4/5;object-fit:cover;scroll-snap-align:start;display:block}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:0;background:rgba(247,238,220,.92);color:var(--vinho);font-size:20px;box-shadow:0 4px 12px rgba(20,5,8,.25)}
+.nav.prev{left:10px}.nav.next{right:10px}
+.contador{position:absolute;right:10px;top:10px;background:rgba(20,5,8,.72);color:#fff;font:700 12px/1 var(--corpo);padding:6px 9px;border-radius:999px;font-variant-numeric:tabular-nums}
+.info{padding:22px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.num{font:400 15px/1 var(--corpo);font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--magenta)}
+.info h3{font:400 clamp(28px,4vw,38px)/1.02 var(--display);text-transform:uppercase}
+.meta{font-size:13px;color:var(--tinta2)}
+.revs{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;font-size:13px;font-weight:700;background:var(--pend-bg);color:var(--pend)}
+.chip.ok{background:var(--ok-bg);color:var(--ok)}
+.chip.alt{background:var(--alt-bg);color:var(--alt)}
+.acoes{display:flex;gap:10px;flex-wrap:wrap}
+.btn{border:2px solid var(--vinho);padding:11px 20px;border-radius:999px;font-weight:700}
+.btn.aprovar{background:var(--vinho);color:var(--papel)}
+.btn.aprovar[aria-pressed="true"]{background:var(--ok);border-color:var(--ok)}
+.btn.alterar{background:transparent;color:var(--vinho)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+details.leg{border-top:1px solid var(--linha);padding-top:12px}
+details.leg summary{cursor:pointer;font-weight:700;color:var(--vinho)}
+details.leg pre{white-space:pre-wrap;font:500 14px/1.55 var(--corpo);margin:10px 0;color:var(--tinta);max-height:320px;overflow:auto}
+.copiar{font-size:13px;border:1px solid var(--linha);background:#fff;padding:6px 12px;border-radius:999px}
+.pedidos{display:grid;gap:8px}
+.pedido{background:var(--alt-bg);padding:10px 12px;font-size:14px}
+.pedido.resolvido{background:var(--pend-bg);opacity:.75}
+.pedido b{color:var(--alt)}
+.pedido .quando{font-size:12px;color:var(--tinta2)}
+.pedido button{margin-top:6px;font-size:12px;border:1px solid var(--alt);background:transparent;color:var(--alt);padding:4px 10px;border-radius:999px}
+.vazio{font-size:14px;color:var(--tinta2)}
+
+/* modal */
+dialog{border:0;padding:0;max-width:560px;width:calc(100% - 32px);background:var(--papel);color:var(--tinta);box-shadow:0 30px 60px rgba(20,5,8,.45)}
+dialog::backdrop{background:rgba(30,6,12,.6)}
+.modal{padding:24px;display:grid;gap:14px}
+.modal h2{font:400 32px/1 var(--display);text-transform:uppercase}
+.modal .s{font:400 40px/1 var(--script);color:var(--magenta)}
+.modal label{font-weight:700;font-size:14px}
+.modal textarea{width:100%;min-height:120px;font:500 16px/1.5 var(--corpo);padding:12px;border:1px solid var(--linha);background:#fffaf0;color:var(--tinta);resize:vertical}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{border:1px solid var(--linha);background:#fff8ec;color:var(--tinta);padding:6px 12px;border-radius:999px;font-size:13px;font-weight:600}
+.tag[aria-pressed="true"]{background:var(--rosa2);border-color:var(--rosa)}
+.previa{background:#fff;border:1px dashed var(--linha);padding:12px;font-size:13px;white-space:pre-wrap;max-height:180px;overflow:auto}
+.linha-acoes{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+a.btn{text-decoration:none;display:inline-block}
+a.btn.zap{background:#1F7A4D;border-color:#1F7A4D;color:#fff}
+a.btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.numero{font-size:13px;color:var(--tinta2)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--tinta);color:var(--papel);padding:12px 18px;border-radius:999px;display:flex;gap:12px;align-items:center;font-weight:600;z-index:20;max-width:calc(100% - 32px)}
+.toast a{color:var(--rosa2)}
+footer{border-top:1px solid var(--linha);padding-block:24px 40px;font-size:13px;color:var(--tinta2)}
+
+@media (max-width:760px){
+  .instr,.feed-box,.post{grid-template-columns:1fr}
+  .feed{max-width:100%}
+}
+.revs{display:none}</style>
+
+<header class="topo"><div class="wrap">
+  <div class="marca"><span>Vértice Studio ◇ aprovação de conteúdo</span><span>@theverticestudio</span></div>
+  <div class="titulo-topo"><div class="s">Aprovação</div><h1>Vértice Studio</h1><p>Dezembro 2026 · aprovação dos sócios · <span id="totalPosts"></span></p></div>
+  <div class="placar" id="placar"></div>
+  <div class="barra" aria-hidden="true"><i id="barra"></i></div>
+</div></header>
+
+<main class="wrap">
+  <section class="bloco instr" aria-labelledby="como">
+    <div>
+      <div class="rotulo" id="como">Como aprovar</div>
+      <ol>
+        <li>Escolha seu nome ao lado. Fica salvo neste aparelho.</li>
+        <li>Veja cada post na ordem de postagem: arraste as imagens dos carrosséis e abra a legenda.</li>
+        <li>Se estiver tudo certo, toque em <b>Aprovar</b>. O WhatsApp abre com a aprovação pronta: é só enviar.</li>
+        <li>Se quiser mudar algo, toque em <b>Pedir alteração</b>, escreva o que mudar e envie pelo WhatsApp. A mensagem já vai com o número do post e o card.</li>
+        <li>Cada aprovação e cada pedido chega para a equipe pelo WhatsApp. Nesta página você vê o que já aprovou neste aparelho.</li>
+      </ol>
+    </div>
+    <div class="quem">
+      <h2>Quem está revisando?</h2>
+      <p>Toque no seu nome antes de aprovar.</p>
+      <div class="pessoas" id="pessoas"></div>
+      <div class="ao-vivo" id="aoVivo"><i></i><span>Conectando…</span></div>
+      
+    </div>
+  </section>
+
+  <section class="bloco" aria-labelledby="feedT">
+    <div class="feed-box">
+      <div>
+        <div class="rotulo" id="feedT">Como o perfil vai ficar</div>
+        <div class="feed" id="feed"></div>
+      </div>
+      <div>
+        <div class="rotulo">Mostrar</div>
+        <div class="filtros" id="filtros"></div>
+        <div class="legenda-cores">
+          <span><i style="background:#2F9E5B"></i>você aprovou</span>
+          <span><i style="background:#E08A00"></i>você pediu alteração</span>
+          <span><i style="background:var(--pend)"></i>aguardando</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="lista" id="lista"></div>
+</main>
+
+<footer><div class="wrap">Página de aprovação · Vértice Studio ◇ · Pedidos chegam no WhatsApp +55 44 99132-5907</div></footer>
+
+<dialog id="dlg" aria-labelledby="dlgT">
+  <form class="modal" id="form" method="dialog">
+    <div><div class="s">Pedir</div><h2 id="dlgT">alteração</h2><div class="meta" id="dlgPost"></div></div>
+    <div id="cardsWrap"><label>Em qual card?</label><div class="tags" id="cards"></div></div>
+    <div><label>O que mudar</label><div class="tags" id="tipos"></div></div>
+    <div><label for="texto">Descreva a alteração</label><textarea id="texto" placeholder="Ex.: trocar a frase do card 3 por…"></textarea></div>
+    <div><label>Mensagem que vai pro WhatsApp</label><div class="previa" id="previa"></div></div>
+    <div class="linha-acoes">
+      <a class="btn zap" id="enviar" href="#" target="_blank" rel="noopener" aria-disabled="true">Enviar no WhatsApp</a>
+      <button class="btn alterar" value="cancel" type="submit">Cancelar</button>
+    </div>
+    <div class="numero">Se o WhatsApp não abrir, copie a mensagem e envie para <b>+55 44 99132-5907</b>. <button class="copiar" type="button" id="copiarMsg">Copiar mensagem</button></div>
+  </form>
+</dialog>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const D = {"cfg":{"cliente":"Vértice Studio","perfil":"theverticestudio","leva":"Dezembro 2026 · aprovação dos sócios","revisores":["Higor","Lucas","João"],"whatsapp":"5544991325907","whatsappExibicao":"+55 44 99132-5907","whatsappAprovacao":"554591213782","estudio":"Vértice Studio"},"posts":[{"id":"27/11","nome":"O rosto da sua empresa vende mais que o logo","tipo":"carrossel","capa":"","imgs":["img/1127-01.jpg","img/1127-02.jpg","img/1127-03.jpg","img/1127-04.jpg","img/1127-05.jpg","img/1127-06.jpg","img/1127-07.jpg"],"legenda":"Vídeo para empresa em Toledo: o rosto da sua equipe segura o cliente mais do que qualquer logo.\n\nDois dos vídeos que mais rodaram com a gente esse ano têm gente no centro. O João Fábio, motorista da @transpnovasantarosa, explicando o processo seletivo (76,5 mil visualizações). E a inauguração da @barbeariacaramell, com cliente rindo na cadeira nova (5,4 mil).\n\nSua empresa já tem esse rosto. Pode ser você, quem trabalha aí há anos ou aquele cliente que indica todo mundo.\n\nO nosso WhatsApp tá no link da bio. Bora conversar?\n\n#videomakertoledo #socialmediatoledo #videoparaempresas #toledopr #marketinglocal"},{"id":"28/11","nome":"Ressaca da Black Friday","tipo":"imagem única","capa":"","imgs":["img/1128-01.jpg"],"legenda":"Black Friday acabou ontem. O post de 50% OFF ainda tá fixado no seu perfil?\n\nTodo ano é igual: a loja fixa três artes de promoção em novembro e esquece até fevereiro. Quem entra no seu Instagram em janeiro acha que a promoção continua, ou pior, que a loja parou no tempo.\n\nDesfixa hoje. No lugar, coloca um vídeo que mostra a sua loja de verdade: a equipe, o produto na mão, o espaço.\n\nNão tem esse vídeo ainda? O nosso WhatsApp tá no link da bio.\n\n#blackfriday #socialmediatoledo #marketingparacomercio #toledopr #humorempreendedor"},{"id":"30/11","nome":"GTA VI: o trailer vendeu antes do jogo","tipo":"carrossel","capa":"","imgs":["img/1130-01.jpg","img/1130-02.jpg","img/1130-03.jpg","img/1130-04.jpg","img/1130-05.jpg","img/1130-06.jpg","img/1130-07.jpg"],"legenda":"GTA VI faturou US$ 3,79 bilhões no primeiro dia. E o marketing começou em dezembro de 2023.\n\nO primeiro trailer bateu 90 milhões de views no YouTube em 24 horas e entrou pro Guinness. O segundo, em maio de 2025, passou de 475 milhões somando todas as plataformas. Quando o jogo saiu, em 19/11, metade do mundo já estava esperando.\n\nTrês coisas que dá pra copiar na sua empresa, mesmo sem a verba da Rockstar: gancho no primeiro segundo, uma cara que todo mundo reconhece e um lançamento em 3 posts (teaser, contagem e lançamento com rosto).\n\nSeu lançamento não precisa de 3 anos. Precisa de um trailer. O nosso WhatsApp tá no link da bio.\n\n#gta6 #gtavi #marketingdigital #videomakertoledo #socialmediatoledo"},{"id":"01/12","nome":"Calendário de dezembro pro comércio","tipo":"carrossel","capa":"","imgs":["img/1201-01.jpg","img/1201-02.jpg","img/1201-03.jpg","img/1201-04.jpg","img/1201-05.jpg","img/1201-06.jpg","img/1201-07.jpg"],"legenda":"Calendário de dezembro pro comércio de Toledo e região: 8 datas pra postar e o que mostrar em cada uma.\n\nAmigo secreto, 13º caindo na conta, último sábado antes do Natal, compra de última hora, véspera, Natal, trocas e Réveillon. Dá pra gravar tudo numa tarde só, o carrossel explica como.\n\nSalva pra usar de roteiro e manda pra quem cuida do Instagram da loja.\n\nQuer os vídeos de dezembro gravados por quem vive disso? Chama a gente no WhatsApp do link da bio.\n\n#marketingparacomercio #socialmediatoledo #toledopr #natal2026 #videoparaempresas"},{"id":"03/12","nome":"Seu post não flopou","tipo":"carrossel","capa":"","imgs":["img/1203-01.jpg","img/1203-02.jpg","img/1203-03.jpg","img/1203-04.jpg","img/1203-05.jpg","img/1203-06.jpg"],"legenda":"Por que meu post não alcança ninguém? O Instagram testa cada post com um grupo pequeno antes de mostrar pra mais gente.\n\nSe esse grupo para, assiste e manda pra alguém, o post vai longe. Se passa reto, ele morre ali. Em janeiro de 2025 o Adam Mosseri, chefe do Instagram, citou três sinais: tempo assistido, curtidas por alcance e envios por alcance. O envio é o que mais ajuda a chegar em quem ainda não te segue.\n\nAntes do próximo post, confere os 4 ajustes do card 5.\n\nManda pra quem vive dizendo que o Instagram não entrega. E se quiser que a gente olhe o seu perfil, o WhatsApp tá no link da bio.\n\n#algoritmodoinstagram #socialmediatoledo #marketingdigital #toledopr #dicasdeinstagram"},{"id":"04/12","nome":"Vértice Wrapped 2026","tipo":"carrossel","capa":"","imgs":["img/1204-01.jpg","img/1204-02.jpg","img/1204-03.jpg","img/1204-04.jpg","img/1204-05.jpg","img/1204-06.jpg","img/1204-07.jpg"],"legenda":"Vértice Wrapped 2026: o nosso chegou antes do seu.\n\n14 Reels no ano e mais de 105 mil visualizações somadas. O mais visto foi o processo seletivo da @transpnovasantarosa, com 76,5 mil, explicado pelo motorista João Fábio em Collab com o cliente. O formato do ano foi esse: gente real, postado no perfil do cliente e no nosso.\n\nA frase mais ouvida nas gravações? \"Só mais um ajuste.\"\n\nQuer aparecer no nosso Wrapped de 2027? O WhatsApp tá no link da bio.\n\n#wrapped #retrospectiva2026 #socialmediatoledo #videomakertoledo #toledopr"},{"id":"05/12","nome":"Os 6 tipos de dono de negócio no Instagram","tipo":"carrossel","capa":"","imgs":["img/1205-01.jpg","img/1205-02.jpg","img/1205-03.jpg","img/1205-04.jpg","img/1205-05.jpg","img/1205-06.jpg","img/1205-07.jpg","img/1205-08.jpg"],"legenda":"Os 6 tipos de dono de negócio no Instagram. A gente conhece pelo menos um de cada aqui em Toledo.\n\nO do \"amanhã eu posto\", o da promoção eterna, o sumido, o do bom dia, o que grava tudo de cima e o da dancinha. Qual é o seu? Comenta o número.\n\nE marca o sócio que é o tipo 01. Ele sabe.\n\nQuer virar o tipo 07, o que posta e vende? Chama a gente no WhatsApp do link da bio.\n\n#empreendedorismo #humorempreendedor #socialmediatoledo #toledopr #marketinglocal"},{"id":"06/12","nome":"Expectativa × realidade: o take de drone","tipo":"imagem única","capa":"","imgs":["img/1206-01.jpg"],"legenda":"Expectativa: take de drone. Realidade: celular, fita e uma vassoura.\n\nEsse take saiu num dos nossos primeiros vídeos, quando drone ainda era sonho. O celular foi preso com fita numa vassoura e um de nós segurou lá no alto, no meio do campo.\n\nHoje o drone é de verdade. Mas a vontade de inventar continua a mesma.\n\nQuer um vídeo assim pra sua empresa? O WhatsApp tá no link da bio.\n\n#bastidores #videomakertoledo #filmagemcomdrone #toledopr #expectativaxrealidade"},{"id":"08/12","nome":"Seu celular grava melhor do que você imagina","tipo":"carrossel","capa":"","imgs":["img/1208-01.jpg","img/1208-02.jpg","img/1208-03.jpg","img/1208-04.jpg","img/1208-05.jpg","img/1208-06.jpg","img/1208-07.jpg"],"legenda":"Como gravar vídeo com celular pra sua loja: 5 ajustes antes de apertar o REC.\n\n1. Limpa a lente.\n2. Deixa a janela na sua frente.\n3. Trava foco e exposição.\n4. Grava em 4K a 30 qps.\n5. Chega perto em vez de dar zoom.\n\nSalva pra testar amanhã. Quando quiser luz de verdade, câmera, drone e alguém pensando o roteiro, chama a gente no WhatsApp do link da bio. A gente grava em Toledo e região, do celular ao drone.\n\n#gravarcomcelular #videomakertoledo #dicasdevideo #toledopr #videoparaempresas"},{"id":"10/12","nome":"Seu Instagram tá no episódio filler","tipo":"carrossel","capa":"","imgs":["img/1210-01.jpg","img/1210-02.jpg","img/1210-03.jpg","img/1210-04.jpg","img/1210-05.jpg","img/1210-06.jpg","img/1210-07.jpg","img/1210-08.jpg"],"legenda":"Seu Instagram tá no episódio filler? Aquele que existe só pra preencher a semana e no fim nada mudou na história.\n\nSinais: post de bom dia sem dizer o que você vende, a mesma arte de promoção toda semana, nenhum rosto da equipe, nenhuma dúvida de cliente respondida.\n\nTodo protagonista tem um arco de treino. O do seu perfil cabe em 4 semanas: mostre quem faz, responda 3 dúvidas reais, mostre o bastidor e feche com um resultado.\n\nBora tirar o seu perfil do filler? O WhatsApp tá no link da bio.\n\n#anime #naruto #onepiece #socialmediatoledo #marketingdigital"},{"id":"11/12","nome":"Toledo é o nosso Vice City","tipo":"imagem única","capa":"","imgs":["img/1211-01.jpg"],"legenda":"Toledo é o nosso Vice City. Não precisa esperar o GTA VI pra ver um pôr do sol desses.\n\nA imagem é real, gravada pela gente aqui na região. A cor é de videogame: a gente tratou o céu com a paleta rosa e laranja de Leonida, o estado do GTA VI, pra mostrar o que uma edição bem feita faz com uma cena comum.\n\nSua empresa também pode ter cara de cinema. O WhatsApp tá no link da bio.\n\n#gta6 #gtavi #toledopr #videomakertoledo #filmagemcomdrone"},{"id":"12/12","nome":"Agenda 2027 da Vértice","tipo":"carrossel","capa":"","imgs":["img/1212-01.jpg","img/1212-02.jpg","img/1212-03.jpg","img/1212-04.jpg","img/1212-05.jpg"],"legenda":"Agência de social media em Toledo com a agenda de janeiro aberta.\n\nFunciona assim: a gente conversa sobre a sua empresa, monta o roteiro do mês, grava numa diária (celular, luz, câmera ou drone), você aprova tudo por um link no celular e a gente agenda e mostra os números no fim do mês.\n\nJá gravamos com transportadora, barbearia, clínica e comércio aqui da região.\n\nQuer começar 2027 postando? O WhatsApp tá no link da bio. Bora?\n\n#socialmediatoledo #videomakertoledo #agenciademarketing #toledopr #marketinglocal"},{"id":"13/12","nome":"4 filmes que ensinam marketing","tipo":"carrossel","capa":"","imgs":["img/1213-01.jpg","img/1213-02.jpg","img/1213-03.jpg","img/1213-04.jpg","img/1213-05.jpg","img/1213-06.jpg"],"legenda":"4 filmes que ensinam marketing melhor que muito curso. Salva pra maratonar nas férias.\n\nO Diabo Veste Prada: o cliente acha que escolheu sozinho, mas alguém mostrou aquilo antes.\nA Rede Social: domine um bairro antes de tentar o mundo.\nO Show de Truman: gente gosta de ver a vida real, bastidor prende mais que comercial.\nRatatouille: prato simples, memória forte. Emoção vende mais que firula.\n\nQual você colocaria nessa lista?\n\nQuer transformar a sua empresa em história? O WhatsApp tá no link da bio.\n\n#filmes #marketingdigital #socialmediatoledo #videomakertoledo #toledopr"},{"id":"15/12","nome":"Presentes de Natal pro Instagram da loja","tipo":"carrossel","capa":"","imgs":["img/1215-01.jpg","img/1215-02.jpg","img/1215-03.jpg","img/1215-04.jpg","img/1215-05.jpg","img/1215-06.jpg","img/1215-07.jpg"],"legenda":"4 presentes de Natal pro Instagram da sua loja. O quinto não cabe na caixa.\n\n1. Uma luz de LED pequena, pro vídeo da noite ter cara de dia.\n2. Um tripé de celular, pra gravar sozinho sem tremer.\n3. Um microfone de lapela, porque áudio chiando faz a pessoa pular o vídeo.\n4. Um estabilizador, pra andar pela loja filmando.\n5. Alguém pensando o roteiro. Esse a gente leva.\n\nSalva a lista e manda pra quem vai te dar presente.\n\nQuer o presente nº 5? O WhatsApp tá no link da bio.\n\n#presentedenatal #gravarcomcelular #videomakertoledo #socialmediatoledo #toledopr"},{"id":"16/12","nome":"Meme Dunesday: sua loja × a do vizinho","tipo":"imagem única","capa":"","imgs":["img/1216-01.jpg"],"legenda":"Duna × Vingadores na mesma semana. Sua loja × a do vizinho no mesmo Natal.\n\nEm dezembro todo mundo disputa a mesma atenção. Quem aparece mais, com vídeo bom e rosto de gente, leva o cliente.\n\nBora fazer a sua loja aparecer? O WhatsApp tá no link da bio.\n\n#dunesday #duna #vingadores #socialmediatoledo #toledopr"},{"id":"17/12","nome":"Dunesday: o que a briga de bilheteria ensina","tipo":"carrossel","capa":"","imgs":["img/1217-01.jpg","img/1217-02.jpg","img/1217-03.jpg","img/1217-04.jpg","img/1217-05.jpg","img/1217-06.jpg"],"legenda":"Dunesday: Duna Parte 3 e Vingadores: Doomsday estreiam na mesma semana. Em 2023 a gente viu a mesma briga com Barbie e Oppenheimer, e cada um passou de US$ 900 milhões no mundo.\n\nTrês lições pra sua empresa:\n1. Rivalidade gera conversa. Duas lojas vizinhas num post em Collab atingem o público das duas.\n2. Cada um com a sua cara. Uma cor, um jeito de foto, uma voz.\n3. Data marcada com antecedência. Vai lançar em janeiro? Começa a mostrar agora.\n\nBora fazer a sua empresa estrear direito? O WhatsApp tá no link da bio.\n\n#dunesday #duna #vingadores #marketingdigital #socialmediatoledo"},{"id":"19/12","nome":"Último sábado antes do Natal","tipo":"imagem única","capa":"","imgs":["img/1219-01.jpg"],"legenda":"Último sábado antes do Natal: hoje a sua loja enche. Grava 15 segundos.\n\nTrês cenas rápidas: o movimento na porta, o produto que mais sai e a equipe atendendo. Posta no Stories com o horário de hoje. Quem vê a loja cheia quer ir também.\n\nNão deu tempo de gravar esse ano? Em janeiro a gente grava com você. O WhatsApp tá no link da bio.\n\n#natal2026 #comerciolocal #toledopr #socialmediatoledo #videomakertoledo"},{"id":"20/12","nome":"O Instagram mudou de versão","tipo":"carrossel","capa":"","imgs":["img/1220-01.jpg","img/1220-02.jpg","img/1220-03.jpg","img/1220-04.jpg","img/1220-05.jpg","img/1220-06.jpg","img/1220-07.jpg"],"legenda":"O Instagram mudou de versão. 5 notas da atualização pra sua empresa não ficar no modelo antigo em 2027:\n\n1. Envio vale mais que curtida pra chegar em quem não te segue.\n2. A legenda virou busca: escreve como o cliente digita, tipo \"barbearia em Toledo\".\n3. Hashtag virou etiqueta: de 3 a 5, específicas.\n4. Original ganha, repost perde. Grava no celular mesmo.\n5. Gente real vence arte bonita.\n\nBora atualizar o Instagram da sua empresa? O WhatsApp tá no link da bio.\n\n#instagram2027 #algoritmodoinstagram #marketingdigital #socialmediatoledo #toledopr"},{"id":"23/12","nome":"Checklist de Natal de última hora","tipo":"carrossel","capa":"","imgs":["img/1223-01.jpg","img/1223-02.jpg","img/1223-03.jpg","img/1223-04.jpg"],"legenda":"Seu Instagram tem 48 horas pra salvar o Natal. Checklist de última hora pra loja:\n\n✔ Horário de 24 e 25 no Stories e num destaque\n✔ Post \"ainda dá tempo\" com estoque e horário\n✔ Testa o link da bio\n✔ Vídeo de 15 s embrulhando um presente\n✔ Responde todo direct no mesmo dia\n✔ Mensagem de Natal com a equipe, em vídeo\n\nSalva pro ano que vem. E em janeiro a gente grava isso com você: o WhatsApp tá no link da bio.\n\n#natal2026 #comerciolocal #socialmediatoledo #toledopr #dicasdeinstagram"},{"id":"24/12","nome":"Feliz Natal da Vértice","tipo":"imagem única","capa":"","imgs":["img/1224-01.jpg"],"legenda":"Feliz Natal da Vértice Studio.\n\nObrigado a cada empresa que abriu as portas pra nossa câmera em 2026: transportadora, barbearia, clínica, consultório e comércio aqui da região. Cada gravação ensinou alguma coisa pra gente.\n\nQue o seu Natal seja leve. Em 2027 tem mais.\n\nHigor, Lucas e João ◇\n\n#feliznatal #natal2026 #videomakertoledo #socialmediatoledo #toledopr"},{"id":"26/12","nome":"26/12: o dono abrindo o Insights","tipo":"imagem única","capa":"","imgs":["img/1226-01.jpg"],"legenda":"26/12: o dono abrindo o Insights depois de sumir do Instagram no Natal.\n\nA loja fechou uns dias, o perfil também. Só que o cliente continuou rolando o feed, e quem apareceu nessa semana ficou na cabeça dele pra janeiro.\n\nSeu cliente não tirou férias do celular. Volta a postar na segunda. Se quiser ajuda, o WhatsApp tá no link da bio.\n\n#humorempreendedor #socialmediatoledo #toledopr #instagramparanegocios #marketinglocal"},{"id":"27/12","nome":"2026 nos bastidores","tipo":"carrossel","capa":"","imgs":["img/1227-01.jpg","img/1227-02.jpg","img/1227-03.jpg","img/1227-04.jpg","img/1227-05.jpg","img/1227-06.jpg","img/1227-07.jpg"],"legenda":"O nosso 2026 sem filtro: o que não apareceu no vídeo final.\n\nRoteiro impresso no pátio da transportadora. Celular preso com fita numa vassoura pra fingir drone. Luz montada antes da cliente chegar. Gravação que só começou depois que a casa fechou. E o dia em que viramos telejornal.\n\nFoi um ano de aprender gravando. Obrigado a quem deixou a gente entrar.\n\nBora gravar os bastidores da sua empresa em 2027? O WhatsApp tá no link da bio.\n\n#retrospectiva2026 #bastidores #videomakertoledo #socialmediatoledo #toledopr"},{"id":"28/12","nome":"Metas 2027 pro Instagram que dá pra cumprir","tipo":"carrossel","capa":"","imgs":["img/1228-01.jpg","img/1228-02.jpg","img/1228-03.jpg","img/1228-04.jpg"],"legenda":"Meta de 2027: postar todo dia. Meta real, que cabe na semana de quem trabalha:\n\n✔ 3 posts por semana\n✔ 1 vídeo com rosto por semana\n✔ Direct respondido no mesmo dia\n✔ 1 Collab por mês\n✔ 5 minutos de Insights todo domingo\n\nSe travar em fevereiro, divide: você grava, alguém pensa e posta. Não precisa fazer tudo, precisa não sumir.\n\nSalva e manda pro sócio. E se quiser dividir a parte chata, o WhatsApp tá no link da bio.\n\n#metas2027 #planejamento #socialmediatoledo #toledopr #instagramparanegocios"},{"id":"30/12","nome":"Do nosso 1º vídeo até hoje","tipo":"carrossel","capa":"","imgs":["img/1230-01.jpg","img/1230-02.jpg","img/1230-03.jpg","img/1230-04.jpg","img/1230-05.jpg","img/1230-06.jpg"],"legenda":"Do nosso primeiro vídeo, em agosto, até o de 76 mil views em novembro. O que mudou no meio:\n\n1. O roteiro foi pro papel. Pergunta escrita, ordem dos takes e gancho decidido antes.\n2. A luz deixou de ser sorte. Ela vai com a gente em toda diária.\n3. A câmera foi pro alto. Do celular na vassoura ao drone de verdade.\n4. A gente parou de gravar logo e passou a gravar gente.\n\nÉ isso que vem com mais força em 2027. Bora fazer a sua empresa evoluir junto? O WhatsApp tá no link da bio.\n\n#retrospectiva2026 #videomakertoledo #socialmediatoledo #toledopr #bastidores"},{"id":"31/12","nome":"◇ 2027","tipo":"imagem única","capa":"","imgs":["img/1231-01.jpg"],"legenda":"Que 2027 tenha mais vídeo e menos \"amanhã eu posto\". ◇\n\nObrigado por acompanhar a Vértice nesse primeiro ano de verdade no Instagram. Em janeiro a gente volta com câmera, luz, drone e muita ideia pra empresa de vocês.\n\nFeliz ano novo! A gente se vê nas gravações.\n\n#feliz2027 #anonovo #videomakertoledo #socialmediatoledo #toledopr"}]};
+const {cfg, posts} = D;
+const R = cfg.revisores;
+const LS = k => { try { return localStorage.getItem(k) } catch(e) { return null } };
+const LSset = (k,v) => { try { localStorage.setItem(k,v) } catch(e) {} };
+let eu = LS('revisor-' + cfg.perfil);
+if (!R.includes(eu)) eu = null;
+let filtro = 'todos';
+let aprov = {};   // "NN_Nome" -> {status, em}
+let pedidos = []; // {id, post, pessoa, texto, cards, tipos, em, resolvido}
+let db = null, user = null, souDono = false, uid = null;
+const $ = s => document.querySelector(s);
+const el = (t, cls, txt) => { const e = document.createElement(t); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+const zap = msg => 'https://api.whatsapp.com/send?phone=' + cfg.whatsapp + '&text=' + encodeURIComponent(msg);
+const zapAprov = msg => 'https://api.whatsapp.com/send?phone=' + (cfg.whatsappAprovacao || cfg.whatsapp) + '&text=' + encodeURIComponent(msg);
+const msgAprov = p => '✅ *Post ' + p.id + ' aprovado*\n' + p.nome + '\n\nCliente: ' + cfg.cliente + '\nAprovado por: ' + eu;
+const hora = iso => { try { return new Date(iso).toLocaleString('pt-BR', {day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'}) } catch(e) { return '' } };
+
+function statusPost(p) {
+  const st = R.map(r => (aprov[p.id + '_' + r] || {}).status);
+  const abertos = pedidos.some(x => x.post === p.id && !x.resolvido);
+  if (abertos) return 'alt';
+  if (eu && (aprov[p.id + '_' + eu] || {}).status === 'aprovado') return 'ok';
+  return 'pend';
+}
+
+function toast(txt, link) {
+  const t = $('#toast'); t.textContent = '';
+  t.appendChild(el('span', null, txt));
+  if (link) { const a = el('a', null, link.txt); a.href = link.href; a.target = '_blank'; a.rel = 'noopener'; t.appendChild(a); }
+  t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => t.hidden = true, 7000);
+}
+
+function renderPessoas() {
+  const box = $('#pessoas'); box.textContent = '';
+  R.forEach(r => { const b = el('button', 'pessoa', r); b.type = 'button'; b.setAttribute('aria-pressed', String(r === eu)); b.onclick = () => { eu = r; LSset('revisor-' + cfg.perfil, r); renderTudo(); }; box.appendChild(b); });
+}
+
+function renderPlacar() {
+  const total = posts.length * R.length;
+  const feitos = Object.values(aprov).filter(a => a.status === 'aprovado').length;
+  const box = $('#placar'); box.textContent = '';
+  const add = (n, t) => { const d = el('div'); d.appendChild(el('b', null, n)); d.appendChild(el('span', null, t)); box.appendChild(d); };
+  add(posts.filter(p => statusPost(p) === 'ok').length + '/' + posts.length, 'posts aprovados por todos');
+  R.forEach(r => add(posts.filter(p => (aprov[p.id + '_' + r] || {}).status === 'aprovado').length + '/' + posts.length, 'aprovados por ' + r));
+  add(String(pedidos.filter(x => !x.resolvido).length), 'pedidos de alteração em aberto');
+  $('#barra').style.width = (total ? feitos / total * 100 : 0) + '%';
+  $('#totalPosts').textContent = posts.length + ' posts';
+}
+
+function renderFeed() {
+  const f = $('#feed'); f.textContent = '';
+  [...posts].reverse().forEach(p => {
+    const a = el('a'); a.href = '#post-' + p.id; a.setAttribute('aria-label', 'Post ' + p.id);
+    const i = el('img'); i.src = p.imgs[0]; i.alt = ''; i.loading = 'lazy'; a.appendChild(i);
+    a.appendChild(el('span', 'pt', p.id)); a.appendChild(el('span', 'st ' + statusPost(p)));
+    f.appendChild(a);
+  });
+}
+
+function renderFiltros() {
+  const ops = [['todos','Todos'],['meus','Falta eu aprovar'],['alt','Pedi alteração']];
+  const box = $('#filtros'); box.textContent = '';
+  ops.forEach(([k, t]) => { const b = el('button', 'filtro', t); b.type = 'button'; b.setAttribute('aria-pressed', String(filtro === k)); b.onclick = () => { filtro = k; renderTudo(); }; box.appendChild(b); });
+}
+
+function visivel(p) {
+  if (filtro === 'todos') return true;
+  if (filtro === 'meus') return !!eu && (aprov[p.id + '_' + eu] || {}).status !== 'aprovado';
+  return statusPost(p) === filtro;
+}
+
+function cardPost(p) {
+  const art = el('article', 'post'); art.id = 'post-' + p.id;
+  const m = el('div', 'midia'); const tr = el('div', 'trilho');
+  p.imgs.forEach((s, k) => { const i = el('img'); i.src = s; i.alt = p.nome + ' · card ' + (k + 1); i.loading = 'lazy'; tr.appendChild(i); });
+  m.appendChild(tr);
+  if (p.imgs.length > 1) {
+    const c = el('div', 'contador', '1 / ' + p.imgs.length); m.appendChild(c);
+    tr.addEventListener('scroll', () => { c.textContent = (Math.round(tr.scrollLeft / tr.clientWidth) + 1) + ' / ' + p.imgs.length; }, {passive: true});
+    const pv = el('button', 'nav prev', '‹'); pv.type = 'button'; pv.setAttribute('aria-label', 'Card anterior'); pv.onclick = () => tr.scrollBy({left: -tr.clientWidth, behavior: 'smooth'});
+    const nx = el('button', 'nav next', '›'); nx.type = 'button'; nx.setAttribute('aria-label', 'Próximo card'); nx.onclick = () => tr.scrollBy({left: tr.clientWidth, behavior: 'smooth'});
+    m.appendChild(pv); m.appendChild(nx);
+  }
+  art.appendChild(m);
+  const info = el('div', 'info');
+  info.appendChild(el('div', 'num', 'Post ' + p.id));
+  info.appendChild(el('h3', null, p.nome));
+  info.appendChild(el('div', 'meta', p.tipo + (p.imgs.length > 1 ? ' · ' + p.imgs.length + ' cards' : '') + ' · capa ' + p.capa));
+  const revs = el('div', 'revs');
+  R.forEach(r => {
+    const a = aprov[p.id + '_' + r] || {};
+    const temPedido = pedidos.some(x => x.post === p.id && x.pessoa === r && !x.resolvido);
+    const cls = a.status === 'aprovado' ? 'ok' : temPedido ? 'alt' : '';
+    revs.appendChild(el('span', 'chip ' + cls, (a.status === 'aprovado' ? '✓ ' : temPedido ? '✎ ' : '○ ') + r + (a.status === 'aprovado' ? ' aprovou' : temPedido ? ' pediu alteração' : ' aguardando')));
+  });
+  info.appendChild(revs);
+  const ac = el('div', 'acoes');
+  const meu = eu && (aprov[p.id + '_' + eu] || {}).status === 'aprovado';
+  let ap;
+  if (meu) {
+    ap = el('button', 'btn aprovar', '✓ Aprovado por você · desfazer'); ap.type = 'button'; ap.setAttribute('aria-pressed', 'true');
+    ap.disabled = !db; ap.onclick = () => aprovar(p, false);
+  } else {
+    ap = el('a', 'btn aprovar', 'Aprovar'); ap.target = '_blank'; ap.rel = 'noopener';
+    if (!eu) { ap.href = '#'; ap.setAttribute('aria-disabled', 'true'); ap.title = 'Escolha seu nome primeiro'; ap.onclick = e => { e.preventDefault(); toast('Escolha seu nome no topo da página primeiro'); }; }
+    else { ap.href = zapAprov(msgAprov(p)); ap.onclick = () => aprovar(p, true); }
+  }
+  const al = el('button', 'btn alterar', 'Pedir alteração'); al.type = 'button'; al.disabled = !eu; al.title = !eu ? 'Escolha seu nome primeiro' : '';
+  al.onclick = () => abrirPedido(p, Math.round(tr.scrollLeft / Math.max(1, tr.clientWidth)) + 1);
+  ac.appendChild(ap); ac.appendChild(al); info.appendChild(ac);
+  const ps = pedidos.filter(x => x.post === p.id).sort((a, b) => (b.em || '').localeCompare(a.em || ''));
+  if (ps.length) {
+    const box = el('div', 'pedidos'); box.appendChild(el('div', 'rotulo', 'Pedidos de alteração'));
+    ps.forEach(x => {
+      const d = el('div', 'pedido' + (x.resolvido ? ' resolvido' : ''));
+      d.appendChild(el('b', null, x.pessoa + (x.cards ? ' · ' + x.cards : '') + (x.resolvido ? ' · resolvido' : '')));
+      d.appendChild(el('div', null, x.texto));
+      d.appendChild(el('div', 'quando', hora(x.em)));
+      if (souDono && !x.resolvido) { const b = el('button', null, 'Marcar como resolvido'); b.type = 'button'; b.onclick = () => resolver(x); d.appendChild(b); }
+      box.appendChild(d);
+    });
+    info.appendChild(box);
+  }
+  if (p.legenda) {
+    const det = el('details', 'leg'); det.appendChild(el('summary', null, 'Ver legenda'));
+    det.appendChild(el('pre', null, p.legenda));
+    const cp = el('button', 'copiar', 'Copiar legenda'); cp.type = 'button';
+    cp.onclick = () => navigator.clipboard.writeText(p.legenda).then(() => toast('Legenda copiada')).catch(() => toast('Selecione o texto da legenda para copiar'));
+    det.appendChild(cp); info.appendChild(det);
+  }
+  art.appendChild(info);
+  return art;
+}
+
+function renderLista() {
+  const box = $('#lista'); box.textContent = '';
+  const vis = posts.filter(visivel);
+  if (!vis.length) box.appendChild(el('p', 'vazio', filtro === 'meus' && !eu ? 'Escolha seu nome para ver o que falta você aprovar.' : 'Nenhum post neste filtro.'));
+  vis.forEach(p => box.appendChild(cardPost(p)));
+}
+
+function renderTudo() { renderPessoas(); renderPlacar(); renderFeed(); renderFiltros(); renderLista(); }
+
+async function aprovar(p, valor) {
+  if (!eu) return;
+  if (!db) { toast('Aprovação enviada pelo WhatsApp. Para registrar na página, entre com sua conta do claude.ai.'); return; }
+  const id = p.id + '_' + eu;
+  try {
+    if (valor) await db.collection('aprovacoes').doc(id).set({post: p.id, pessoa: eu, status: 'aprovado', em: new Date().toISOString(), uid: uid || ''});
+    else await db.collection('aprovacoes').doc(id).delete();
+    if (valor) toast('Post ' + p.id + ' aprovado. Confira se o WhatsApp abriu e toque em enviar.');
+    else toast('Aprovação desfeita');
+  } catch (e) { toast('Não deu para salvar: ' + (e && e.code === 'not_granted' ? 'sua conta só pode ver esta página' : 'tente de novo em instantes')); }
+}
+
+async function resolver(x) {
+  try { await db.collection('pedidos').doc(x.id).update({resolvido: true}); } catch (e) { toast('Não deu para marcar como resolvido'); }
+}
+
+// ---- modal de alteração
+let atual = null, cardsSel = new Set(), tiposSel = new Set();
+function msg() {
+  if (!atual) return '';
+  const cards = atual.imgs.length > 1 ? (cardsSel.size ? [...cardsSel].sort((a,b)=>a-b).map(n => 'card ' + n).join(', ') : 'carrossel todo') : 'imagem única';
+  return '📝 *Pedido de alteração*\nCliente: ' + cfg.cliente + '\n\n*Post ' + atual.id + '* · ' + atual.nome + '\nOnde: ' + cards +
+    (tiposSel.size ? '\nTipo: ' + [...tiposSel].join(', ') : '') + '\nPedido por: ' + eu + '\n\n*O que mudar:*\n' + ($('#texto').value.trim() || '…');
+}
+function atualizaMsg() {
+  $('#previa').textContent = msg();
+  const ok = $('#texto').value.trim().length > 2;
+  const a = $('#enviar'); a.setAttribute('aria-disabled', String(!ok)); a.href = ok ? zap(msg()) : '#';
+}
+function abrirPedido(p, cardAtual) {
+  atual = p; cardsSel = new Set(p.imgs.length > 1 ? [cardAtual] : []); tiposSel = new Set();
+  $('#dlgPost').textContent = 'Post ' + p.id + ' · ' + p.nome;
+  const cw = $('#cards'); cw.textContent = ''; $('#cardsWrap').hidden = p.imgs.length < 2;
+  p.imgs.forEach((_, k) => { const n = k + 1; const b = el('button', 'tag', 'Card ' + n); b.type = 'button'; b.setAttribute('aria-pressed', String(cardsSel.has(n))); b.onclick = () => { cardsSel.has(n) ? cardsSel.delete(n) : cardsSel.add(n); b.setAttribute('aria-pressed', String(cardsSel.has(n))); atualizaMsg(); }; cw.appendChild(b); });
+  const tw = $('#tipos'); tw.textContent = '';
+  ['Texto', 'Imagem', 'Cores', 'Posição', 'Legenda'].forEach(t => { const b = el('button', 'tag', t); b.type = 'button'; b.setAttribute('aria-pressed', 'false'); b.onclick = () => { tiposSel.has(t) ? tiposSel.delete(t) : tiposSel.add(t); b.setAttribute('aria-pressed', String(tiposSel.has(t))); atualizaMsg(); }; tw.appendChild(b); });
+  $('#texto').value = LS('rascunho-' + cfg.perfil + '-' + p.id) || '';
+  atualizaMsg(); $('#dlg').showModal(); $('#texto').focus();
+}
+$('#texto').addEventListener('input', () => { if (atual) LSset('rascunho-' + cfg.perfil + '-' + atual.id, $('#texto').value); atualizaMsg(); });
+$('#enviar').addEventListener('click', async () => {
+  if ($('#enviar').getAttribute('aria-disabled') === 'true' || !atual) return;
+  const p = atual, texto = $('#texto').value.trim();
+  const cards = p.imgs.length > 1 ? (cardsSel.size ? [...cardsSel].sort((a,b)=>a-b).map(n => 'card ' + n).join(', ') : 'carrossel todo') : '';
+  if (db) { try { await db.collection('pedidos').add({post: p.id, pessoa: eu, texto, cards, tipos: [...tiposSel].join(', '), em: new Date().toISOString(), resolvido: false, uid: uid || ''}); } catch (e) {} }
+  LSset('rascunho-' + cfg.perfil + '-' + p.id, '');
+  $('#dlg').close(); toast('Pedido registrado. Confira se o WhatsApp abriu e toque em enviar.');
+});
+$('#copiarMsg').addEventListener('click', () => navigator.clipboard.writeText(msg()).then(() => toast('Mensagem copiada')).catch(() => toast('Selecione o texto da prévia para copiar')));
+
+// ---- tempo real
+
+// banco local (localStorage) com a mesma interface do db da página no claude.ai
+function dbLocal() {
+  const K = 'aprovacao-' + cfg.perfil + '-';
+  const ler = c => { try { return JSON.parse(localStorage.getItem(K + c) || '{}') } catch (e) { return {} } };
+  const gravar = (c, v) => { try { localStorage.setItem(K + c, JSON.stringify(v)) } catch (e) {} };
+  const subs = {};
+  const snap = c => { const o = ler(c); return { docs: Object.entries(o).map(([id, v]) => ({ id, data: () => v })) }; };
+  const avisar = c => (subs[c] || []).forEach(fn => fn(snap(c)));
+  return { collection: c => ({
+    doc: id => ({
+      set: async v => { const o = ler(c); o[id] = v; gravar(c, o); avisar(c); },
+      update: async v => { const o = ler(c); o[id] = { ...(o[id] || {}), ...v }; gravar(c, o); avisar(c); },
+      delete: async () => { const o = ler(c); delete o[id]; gravar(c, o); avisar(c); } }),
+    add: async v => { const o = ler(c); const id = Date.now().toString(36); o[id] = v; gravar(c, o); avisar(c); return { id }; },
+    onSnapshot: fn => { (subs[c] = subs[c] || []).push(fn); fn(snap(c)); return () => {}; } }) };
+}
+async function conectar() {
+  db = dbLocal(); souDono = false;
+  db.collection('aprovacoes').onSnapshot(s => { aprov = {}; s.docs.forEach(d => { const v = d.data() || {}; if (v.post && v.pessoa) aprov[v.post + '_' + v.pessoa] = v; }); renderTudo(); });
+  db.collection('pedidos').onSnapshot(s => { pedidos = s.docs.map(d => ({id: d.id, ...(d.data() || {})})).filter(x => x.post && x.texto); renderTudo(); });
+  const a = $('#aoVivo'); a.classList.add('on'); a.querySelector('span').textContent = 'Suas aprovações ficam marcadas neste aparelho e chegam pelo WhatsApp';
+}
+function renderPlacar() {
+  const box = $('#placar'); box.textContent = '';
+  const add = (n, t) => { const d = el('div'); d.appendChild(el('b', null, n)); d.appendChild(el('span', null, t)); box.appendChild(d); };
+  const meus = eu ? posts.filter(p => (aprov[p.id + '_' + eu] || {}).status === 'aprovado').length : 0;
+  add(eu ? meus + '/' + posts.length : '—', eu ? 'posts que você aprovou' : 'escolha seu nome para começar');
+  add(String(pedidos.filter(x => x.pessoa === eu && !x.resolvido).length), 'alterações que você pediu');
+  $('#barra').style.width = (eu ? meus / posts.length * 100 : 0) + '%';
+  $('#totalPosts').textContent = posts.length + ' posts';
+}
+async function conectarClaude() {
+  const tempo = setTimeout(() => { if (!db) semDb(); }, 10000);
+  try {
+    [db, user] = await Promise.all([window.claude?.use('db'), window.claude?.use('user')]);
+  } catch (e) { db = null; }
+  clearTimeout(tempo);
+  if (!db) return semDb();
+  try { souDono = !!(await user?.isOwner()); uid = await user?.id?.(); } catch (e) {}
+  db.collection('aprovacoes').onSnapshot(s => { aprov = {}; s.docs.forEach(d => { const v = d.data() || {}; if (v.post && v.pessoa) aprov[v.post + '_' + v.pessoa] = v; }); online(); renderTudo(); }, () => offline());
+  db.collection('pedidos').onSnapshot(s => { pedidos = s.docs.map(d => ({id: d.id, ...(d.data() || {})})).filter(x => x.post && x.texto); online(); renderTudo(); }, () => offline());
+}
+function online() { const a = $('#aoVivo'); a.classList.add('on'); a.querySelector('span').textContent = 'Ao vivo: aprovações atualizam sozinhas'; }
+function offline() { const a = $('#aoVivo'); a.classList.remove('on'); a.querySelector('span').textContent = 'Sem conexão ao vivo agora'; }
+function semDb() { db = null; offline(); $('#avisoDb').hidden = false; renderTudo(); }
+
+renderTudo();
+conectar();
+</script>
+</body></html>
